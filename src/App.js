@@ -1,5 +1,5 @@
 import Table from './Table.js';
-import {} from './Dropdown.js';
+import DropdownNumber from './DropdownNumber.js';
 import { getData } from './api.js';
 
 export default function App($app) {
@@ -9,7 +9,16 @@ export default function App($app) {
         dropdown: 5,
         selectedPage: 1,
     };
-
+    const dropdownNumber = new DropdownNumber({
+        $app,
+        initialState: this.dropdown,
+        onClick: (value) => {
+            this.setState({
+                ...this.state,
+                dropdown: value,
+            });
+        },
+    });
     const table = new Table({
         $app,
         initialState: this.state.employees,
