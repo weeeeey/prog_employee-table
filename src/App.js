@@ -16,7 +16,9 @@ export default function App($app) {
             this.setState({
                 ...this.state,
                 dropdown: value,
+                pageindex: 1,
             });
+            console.log(this.state.dropdown);
         },
     });
 

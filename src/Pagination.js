@@ -15,7 +15,7 @@ export default function Pagination({ $app, initialState, onClick }) {
         const [pageindex, dropdown] = this.state;
         const cnt = dropdown === 5 ? [1, 2, 3, 4, 5] : [1, 2];
         this.$target.innerHTML = `
-        <button class="arrow"><<</button>
+        <button data-id=${0} class="arrow"><<</button>
             ${cnt
                 .map(
                     (num, idx) => `
@@ -27,15 +27,13 @@ export default function Pagination({ $app, initialState, onClick }) {
             `
                 )
                 .join('')}
-        <button class="arrow">>></button>
+        <button data-id=${cnt.length - 1} class="arrow">>></button>
         `;
     };
     this.$target.addEventListener('click', (e) => {
-        console.log();
         const button = e.target.closest('BUTTON');
         if (!button) return;
         const { id } = button.dataset;
-
         onClick(parseInt(id) + 1);
     });
 }
