@@ -18,12 +18,24 @@ export default function Pagination({ $app, initialState, onClick }) {
         <button class="arrow"><<</button>
             ${cnt
                 .map(
-                    (num) => `
-                <button>${num}</button>
+                    (num, idx) => `
+                <button 
+                data-id=${idx}
+                style="color:${
+                    idx === pageindex - 1 ? 'red' : 'black'
+                } ">${num}</button>
             `
                 )
                 .join('')}
         <button class="arrow">>></button>
         `;
     };
+    this.$target.addEventListener('click', (e) => {
+        console.log();
+        const button = e.target.closest('BUTTON');
+        if (!button) return;
+        const { id } = button.dataset;
+
+        onClick(parseInt(id) + 1);
+    });
 }

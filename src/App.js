@@ -22,7 +22,7 @@ export default function App($app) {
 
     const table = new Table({
         $app,
-        initialState: this.state.employees[this.state.pageindex],
+        initialState: this.state.employees,
     });
 
     const pagination = new Pagination({
@@ -46,12 +46,15 @@ export default function App($app) {
     };
 
     this.init = async () => {
-        const employees = await getData(this.state.dropdown);
-        this.setState({
-            ...this.state,
-            employees,
-        });
-        console.log(this.state.employees);
+        try {
+            const employees = await getData();
+            this.setState({
+                ...this.state,
+                employees,
+            });
+        } catch (error) {
+            throw new Error(error);
+        }
     };
     this.init();
 }
