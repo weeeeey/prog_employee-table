@@ -18,15 +18,15 @@ export default function DropdownNumber({ $app, initialState, onClick }) {
     this.render = () => {
         this.$target.innerHTML = `
             <option data-id=${0} value="5" ${
-            this.state === '5' ? 'selected' : ''
+            this.state === 5 ? 'selected' : ''
         }>5</option>
             <option data-id=${1} value="15" ${
-            this.state === '15' ? 'selected' : ''
+            this.state === 15 ? 'selected' : ''
         }>15</option>
         `;
     };
     this.$target.addEventListener('change', (e) => {
-        onClick(e.target.value);
+        onClick(parseInt(e.target.value));
     });
     this.render();
 }
