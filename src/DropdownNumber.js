@@ -1,9 +1,13 @@
 export default function DropdownNumber({ $app, initialState, onClick }) {
     this.state = initialState;
-    this.$target = document.createElement('div');
+    this.$target = document.createElement('select');
     this.$target.className = 'area';
-    this.$target.id = '#dropdown';
+    this.$target.className = 'dropdown';
 
+    const pageTitle = document.createElement('h1');
+    pageTitle.id = 'page_title';
+    pageTitle.innerText = 'Grepp Enterprise';
+    $app.appendChild(pageTitle);
     $app.appendChild(this.$target);
 
     this.setState = (nextState) => {
@@ -13,12 +17,12 @@ export default function DropdownNumber({ $app, initialState, onClick }) {
 
     this.render = () => {
         this.$target.innerHTML = `
-        <select>
             <option value="5">5</option>
             <option value="15">15</option>
-        </select>
-
         `;
     };
+    this.$target.addEventListener('change', (e) => {
+        onClick(e.target.value);
+    });
     this.render();
 }
